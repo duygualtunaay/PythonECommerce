@@ -1,0 +1,100 @@
+{% extends 'homebase.html' %}
+
+{% block title %} User Product Edit | {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+      {% load static %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5a5555;
+  color: white;
+}
+</style>
+
+
+<style>
+.button {
+  background-color: #d02fcd; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+
+.button2 {
+  background-color: #8e429b;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #c14dff;
+  color: white;
+}
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<!-- Cart Start -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        {% include "user_panel.html" %}
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="cart-page-inner">
+                            <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        {{ form.media }}
+                        {{ form.as_p }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn-primary" type="submit">SAVE</button>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        <!-- Cart End -->
+
+ {% endblock %}

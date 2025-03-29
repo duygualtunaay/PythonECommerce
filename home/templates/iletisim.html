@@ -1,0 +1,70 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %} İLETİŞİM-{{ setting.company  }} {% endblock%}
+{% block keywords %} İletişim {{ setting.keywords  }} {% endblock%}
+{% block description %} {{ setting.description  }} {% endblock%}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+{% endblock %}
+
+{% block content %}
+<div id="contact-page" class="container">
+    	<div class="bg">
+            <div id="contact-page" class="container">
+    	    <div class="bg">
+    		<div class="row">
+	    		<div class="col-md-4">
+                    <div class="contact-form">
+	    				<h2 class="title text-center">İLETİSİM FORMU</h2>
+                    {% if messages %}
+                        {% for messages in messages %}
+                             <div class="alert alert-{{ messages.tags }}" role="alert">
+                                 {{ messages }}
+                             </div>
+                         {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% if user.id is not None %}
+                        <input type="submit" value="SEND FORM">
+                            {% else %}
+                            İf you want to add comment you should login!
+                         {% endif %}
+                    </form>
+                    </div>
+                </div>
+                </div>
+	    		<div class="col-sm-8">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">İLETİŞİM BİLGİLERİMİZ</h2>
+	    				{{ setting.contact|safe }}
+	    				</address>
+	    				<div class="social-networks">
+	    					<h2 class="title text-center">Social Networking</h2>
+							<ul>
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-google-plus"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-youtube"></i></a>
+								</li>
+							</ul>
+	    				</div>
+	    			</div>
+    			</div>
+	    	</div>
+    	</div>
+    </div><!--/#contact-page-->
+</div>
+</div>
+{% endblock%}

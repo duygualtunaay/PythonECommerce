@@ -1,0 +1,161 @@
+{% extends 'homebase.html' %}
+{% load static %}
+
+{% block title %} {{product.title}} | {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-12 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+
+							<div class="view-product">
+								<img src="{{ product.image.url }}" alt="" />
+								<h3>ZOOM</h3>
+							</div>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+<!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+                                        {% for rs in image %}
+                                            {% if forloop.counter == 1 %}
+										<div class="item active">
+                                        {% else %}
+										<div class="item">
+                                        {% endif %}
+                                            <a href=""><img src="{{ rs.image.url }}" style="height: 150px; width: 150px;" alt=""></a>
+
+										</div>
+
+                                        {% endfor %}
+									</div>
+
+
+								  <!-- Controls -->
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h2>{{ product.title }}</h2>
+								<img src="images/product-details/rating.png" alt="" />
+								<span>
+									<span>{{ product.price }} TL</span>
+									<label>Quantity:</label>
+                                    <form action="/order/addtoshopcart/{{ product.id }}" method="post">
+                                                    {% csrf_token %}
+
+                                                <input name="quantity" type="number" min="0" max="{{ product.amount }}" value="1">
+
+
+
+
+
+                                            <button type="submit" class="btn"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
+
+                                        </form>
+
+								</span>
+								<p><b>Availability:</b> In Stock</p>
+								<p><b>Condition:</b> New</p>
+								<p><b>Brand:</b> E-SHOPPER</p>
+								<a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li><a href="#details" data-toggle="tab">Details</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade" id="details" >
+								<div class="col-sm-9">
+									{{ product.detail | safe }}
+								</div>
+							</div>
+
+
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+                                    {% for rs in comments %}
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i>{{ rs.user.first_name }}</a></li>
+										<li><a href=""><i class="fa fa-calendar-o"></i>{{ rs.create_at }}</a></li>
+                                     <p>{{ rs.comment }}</p>
+									</ul>
+
+                                    {% endfor %}
+
+									<p><b>Write Your Review</b></p>
+
+									<form action="/product/addcomment/{{ product.id }}" method="post">
+                                                {% csrf_token %}
+										<span>
+											<input type="text" name="subject" placeholder="Subject">
+										</span>
+										<textarea name="comment" placeholder="Comment"></textarea>
+                                        {% if user.id is not None %}
+                                                        <button class="btn contact_btn">Submit</button>
+                                                    {% else %}
+                                                        Yorum Eklemek için <a href="/login">Login</a> olunuz!
+                                                    {% endif %}
+
+									</form>
+
+								</div>
+							</div>
+
+						</div>
+					</div><!--/category-tab-->
+
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">recommended items</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+                                {% for rs in producty %}
+
+								<div class="active item">
+
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="{{ rs.image.url }}" alt="" />
+													<h2>{{ rs.title}} TL</h2>
+													<p>{{ rs.title}}</p>
+													<a href="/product/{{ rs.id }}/{{ rs.slug }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div><!--/recommended_items-->
+
+				</div>
+
+{% endblock %}
+
+

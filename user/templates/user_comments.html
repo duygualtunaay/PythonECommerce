@@ -1,0 +1,117 @@
+{% extends 'homebase.html' %}
+
+{% block title %} User Comments | {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5a5555;
+  color: white;
+}
+</style>
+
+
+<style>
+.button {
+  background-color: #d02fcd; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+
+.button2 {
+  background-color: #8e429b;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #c14dff;
+  color: white;
+}
+
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<!-- Cart Start -->
+        <div class="container">
+
+                <div class="row">
+                <div class="col-sm-3">
+                        {% include "user_panel.html" %}
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Subject</th>
+                                            <th>Comment</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for rs in comments %}
+                                        <tr>
+                                            <td>
+                                                <div class="img">
+                                                    <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}"><img src="{{ rs.product.image.url }}" style="height: 100px; width: 100px;" alt="Image"></a>
+                                                    <p>{{ rs.product.title}}</p>
+                                                </div>
+                                            </td>
+                                            <td>{{ rs.subject}}</td>
+    <td>{{ rs.comment}}</td>
+  <td>{{ rs.status}}</td>
+  <td>{{ rs.create_at}}</td>
+  <td><a class="primary-btn" href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Will be Delete ! Are you sure?')"> Delete </a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+        </div>
+        <!-- Cart End -->
+
+ {% endblock %}

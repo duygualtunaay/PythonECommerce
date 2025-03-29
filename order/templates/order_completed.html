@@ -1,0 +1,43 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %} Order Completed - {{ setting.company  }} {% endblock%}
+{% block keywords %}{{ setting.keywords  }} {% endblock%}
+{% block description %} {{ setting.description  }} {% endblock%}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+
+{% endblock %}
+
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-12">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Order Completed</h2>
+						<div class="single-blog-post">
+<div class="section-title">
+                            <h3 class="title">Order Complated</h3>
+                        </div>
+                        <hr>
+                        <h2>Dear  {{ user.first_name }} {{  user.last_name }}</h2>
+                        <hr>
+                        <h3>Your order is completed</h3>
+                        <h3>Order Code : {{ ordercode }}</h3>
+                        <h3>Thank You</h3>
+                        <hr>
+
+						</div>
+					</div><!--/blog-post-area-->
+                </div>
+            </div>
+        </div>
+
+
+
+
+	</section>
+ {% endblock%}

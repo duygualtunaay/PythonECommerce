@@ -1,0 +1,18 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %} Hakkımızda-{{ setting.company  }} {% endblock%}
+{% block keywords %} Hakkımızda {{ setting.keywords  }} {% endblock%}
+{% block description %} {{ setting.description  }} {% endblock%}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+{% endblock %}
+
+{% block content %}
+<div id="contact-page" class="container">
+    	<div class="bg">
+	    	{{ setting.aboutus|safe}}
+    	</div>
+    </div><!--/#contact-page-->
+ {% endblock%}

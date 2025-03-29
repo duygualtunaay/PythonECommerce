@@ -1,0 +1,119 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %} User Profile - {{ setting.company  }} {% endblock%}
+{% block keywords %}{{ setting.keywords  }} {% endblock%}
+{% block description %} {{ setting.description  }} {% endblock%}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+        <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5a5555;
+  color: white;
+}
+</style>
+
+
+<style>
+.button {
+  background-color: #193492; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+
+.button2 {
+  background-color: #403741;
+  color: black;
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #322539;
+  color: white;
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+                        {% include "user_panel.html" %}
+					</div>
+				</div>
+				<div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">USER PROFILE</h2>
+						<div class="single-blog-post">
+							 <button class="button button2"><a href="/user/update">Update Profile</a></button>
+            <button class="button button2"><a href="/user/password">Change Password</a></button>
+                <table id="customers">
+  <tr>
+    <th>Photo</th>
+    <th><img src="{{ profile.image.url }}" height="100" width="100" style="border-radius: 45px"></th>
+  </tr>
+  <tr>
+    <td>Name Surname</td>
+    <td>{{ profile.user.first_name}}</td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td>{{ profile.phone}}</td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td>{{ profile.address}}</td>
+  </tr>
+  <tr>
+    <td>City</td>
+    <td>{{ profile.city}}</td>
+  </tr>
+  <tr>
+    <td>Country</td>
+    <td>{{ profile.country}}</td>
+  </tr>
+</table>
+						</div>
+					</div><!--/blog-post-area-->
+                </div>
+            </div>
+        </div>
+
+
+
+
+	</section>
+ {% endblock%}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<div id="slides" class="cover-slides">
+        <ul class="slides-container">
+            {% for rs in sliderdata %}
+			<li class="text-center">
+				<img src="{{  rs.image.url }}" alt="">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="m-b-20"><strong>{{  rs.title  }}</strong></h1>
+							<p class="m-b-40">{{ rs.description}}</p>
+							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="/product/{{ rs.id }}/{{ rs.slug }}">Buy NOW</a></p>
+						</div>
+					</div>
+				</div>
+			</li>
+            {% endfor %}
+
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</body>
+</html>

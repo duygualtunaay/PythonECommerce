@@ -1,0 +1,62 @@
+{% extends 'homebase.html' %}
+
+{% block title %} FAQ | {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+        <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #5a5555;
+  color: white;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+    <!-- Contact Start -->
+        <div class="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="contact-map">
+                            <h1>FAQ</h1>
+                            <table id="customers">
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+  </tr>
+        {% for rs in faq %}
+  <tr>
+    <td><h5>{{ rs.question }}</h5></td>
+    <td>{{ rs.answer | safe }}</td>
+  </tr>
+        {% endfor %}
+
+</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ {% endblock %}

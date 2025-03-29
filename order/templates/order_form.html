@@ -1,0 +1,117 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %} Order Form - {{ setting.company  }} {% endblock%}
+{% block keywords %}{{ setting.keywords  }} {% endblock%}
+{% block description %} {{ setting.description  }} {% endblock%}
+
+{% block head %}
+<link rel="shortcut icon" type="image/x-icon" href="{{ setting.icon.url}}">
+
+{% endblock %}
+
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Order Form</h2>
+						<div class="single-blog-post">
+<form action="" method="post">
+                    {% csrf_token %}
+
+
+                            <div class="billing-address">
+                                <h2>Billing Address</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>First Name</label>
+                                        <input class="form-control" name="first_name"  value="{{ user.first_name }}" type="text" placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Last Name"</label>
+                                        <input class="form-control" name="last_name"  value="{{ user.last_name }}" type="text" placeholder="Last Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" placeholder="E-mail">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mobile No</label>
+                                        <input class="form-control" name="phone" value="{{ profile.phone }}" type="number" placeholder="Mobile No">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Address</label>
+                                        <input class="form-control" name="address" value="{{ profile.address }}" type="text" placeholder="Address">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>City</label>
+                                        <select name="city" class="input" id="id_city">
+                                    <option value="{{ profile.city }}" selected>{{ profile.city }}</option>
+                                    <option value="İstanbul">Istanbul</option>
+                                    <option value="Ankara">Ankara</option>
+                                    <option value="İzmir">Izmir</option>
+                                    <option value="Bursa">Bursa</option>
+                                    <option value="Konya">Konya</option>
+                                    <option value="Yozgat">Yozgat</option>
+                                </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Country</label>
+                                        <input class="form-control" name="country" type="text" value="{{ profile.country }}" placeholder="City">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                        <div class="shiping-methods">
+                            <div class="section-title">
+                                <h4 class="title">Payment Information</h4>
+                            </div>
+                            <p><label for="id_first_name">Total: {{ total }} ₺ </label>
+                                <input type="text" name="total" class="input" readonly value="₺{{ total }}"></p>
+                            <p><label for="id_first_name">Credit Card Holder</label>
+                                <input type="text" name="holder" class="input"  value=""></p>
+                            <p><label for="id_first_name">Credit Card Number</label>
+                                <input type="text" name="number" class="input"  value=""></p>
+                            <p><label for="id_first_name">Credit Exp Date/Year</label>
+                                <input type="text" name="ecpdate" class="input"  placeholder="mm/yy"></p>
+                            <p><label for="id_first_name">Security Number</label>
+                                <input type="text" name="secnumber" class="input"  value=""></p>
+                        </div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="checkout-inner">
+                            <div class="checkout-summary">
+                                <h1>Cart Total</h1>
+                                <p class="sub-total">Sub Total<span>₺{{total}}</span></p>
+                                <p class="ship-cost">Shipping Cost<span>$1</span></p>
+                                <h2>Grand Total<span>₺{{total}}</span></h2>
+                            </div>
+
+                            <div class="checkout-payment">
+
+                                <div class="checkout-btn">
+                                    <button>Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+
+						</div>
+					</div><!--/blog-post-area-->
+                </div>
+            </div>
+        </div>
+
+
+
+
+	</section>
+ {% endblock%}

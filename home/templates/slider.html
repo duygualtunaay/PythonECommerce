@@ -1,0 +1,42 @@
+{% load static %}
+<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+                        {% for rs in sliderdata %}
+                                    {% if forloop.counter == 1 %}
+							<div class="item active">
+                                {% else %}
+							<div class="item ">
+                            {% endif %}
+								<div class="col-sm-6">
+									<h1><span>{{ rs.category.title }}</span></h1>
+									<h2>{{ rs.title}}</h2>
+									<p>{{ rs.price}} TL</p>
+									<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="/product/{{ rs.id }}/{{ rs.slug }}">SATIN AL</a></p>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{  rs.image.url }}" alt="">
+								</div>
+							</div>
+                            {% endfor %}
+						</div>
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->

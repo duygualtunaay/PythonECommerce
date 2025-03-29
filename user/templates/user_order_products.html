@@ -1,0 +1,64 @@
+{% extends 'homebase.html' %}
+
+{% block title %} User Order Products | {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Cart Start -->
+
+            <div class="container">
+                <div class="row">
+                <div class="col-sm-3">
+                        {% include "user_panel.html" %}
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                                    {% for rs in order_product %}
+                                        <tr>
+                                            <td>
+                                                <div class="img">
+                                                    <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}"><img src="{{ rs.product.image.url }}" style="height: 100px; width: 100px;" alt="Image"></a>
+                                                    <p>{{ rs.product.title}}</p>
+                                                </div>
+                                            </td>
+                                            <td>₺{{ rs.product.price }}</td>
+                                            <td>{{ rs.quantity }}</td>
+                                            <td>₺{{ rs.amount }}</td>
+                                            <td>{{ rs.status}} </td>
+                                            <td>{{ rs.create_at}} </td>
+                                            <td><a class="primary-btn" href="/user/order_product_detail/{{ rs.id }}/{{ rs.order.id}}"> Detail </a></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        <!-- Cart End -->
+ {% endblock %}
